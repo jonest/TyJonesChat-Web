@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Ty Jones Chat</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         font: 13px Helvetica, Arial;
+      }
+
+      form {
+         background: #000;
+         padding: 3px;
+         position: fixed;
+         bottom: 0;
+         width: 100%;
+      }
+
+         form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+         }
+
+         form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+         }
+
+      #messages {
+         list-style-type: none;
+         margin: 0;
+         padding: 0;
+      }
+
+         #messages li {
+            padding: 5px 10px;
+         }
+
+            #messages li:nth-child(odd) {
+               background: #eee;
+            }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <ul id="messages"></ul>
+      <form action="">
+         <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+   </div>
+   <script src="Scripts/jquery-1.6.4.min.js"></script>
+   <script src="Scripts/jquery.signalR-2.2.0.js"></script>
+   <script src="signalr/hubs"></script>
+   <script type="text/javascript">
+      $(function () {
+         // Declare a proxy to reference the hub.
+         var chat = $.connection.tyJonesChatHub;
+         // Create a function that the hub can call to broadcast messages.
+         chat.client.broadcastMessage = function (name, message) {
+            // Html encode display name and message.
+            var encodedName = $('<div />').text(name).html();
+            var encodedMsg = $('<div />').text(message).html();
+            // Add the message to the page.
+            $('#messages').append('<li><strong>' + encodedName
+                + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+         };
+         // Set initial focus to message input box.
+         $('#m').focus();
+         // Start the connection.
+         $.connection.hub.start().done(function () {
+            $('form').submit(function () {
+               // Call the Send method on the hub.
+               chat.server.send(navigator.appName, $('#m').val());
+               // Clear text box and reset focus for next comment.
+               $('#m').val('').focus();
+               return false;
+            });
+         });
+      });
+   </script>
+</body>
+</html>

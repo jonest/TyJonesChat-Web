@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TyJonesChat", "TyJonesChat\TyJonesChat.csproj", "{D62DCB3A-D2E8-4FA6-8AED-1E907AF87239}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{9BFED0BF-B3D7-4A0B-B186-0EF01EB4D44A}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{C142ACE3-4CFB-4357-B380-483FCFE5331A}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\TyJonesChat-WAWS-dev.json = PublishScripts\Configurations\TyJonesChat-WAWS-dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D62DCB3A-D2E8-4FA6-8AED-1E907AF87239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62DCB3A-D2E8-4FA6-8AED-1E907AF87239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62DCB3A-D2E8-4FA6-8AED-1E907AF87239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62DCB3A-D2E8-4FA6-8AED-1E907AF87239}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C142ACE3-4CFB-4357-B380-483FCFE5331A} = {9BFED0BF-B3D7-4A0B-B186-0EF01EB4D44A}
+	EndGlobalSection
+EndGlobal

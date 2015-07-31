@@ -66,6 +66,7 @@
          $('#username').val('web-user-' + guid());
          // Declare a proxy to reference the hub.
          var chat = $.connection.tyJonesChatHub;
+
          // Create a function that the hub can call to broadcast messages.
          chat.client.broadcastMessage = function (jsonMessage) {
             var chatMessage = $.parseJSON(jsonMessage);
@@ -76,10 +77,18 @@
             $('#messages').append('<li><strong>' + encodedName
                 + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
          };
+
+         chat.client.broadcastConnected = function (name) {
+            $('#messages').append('<li><strong>' + name
+                + ' has connected.</strong></li>');
+         };
+
          // Set initial focus to message input box.
          $('#m').focus();
          // Start the connection.
-         $.connection.hub.start().done(function () {
+         $.connection.hub.start(function () {
+            chat.server.connected($('#username').val());
+         }).done(function () {
             $('form').submit(function () {
                // Call the Send method on the hub.
                chat.server.send($('#username').val(), $('#m').val());

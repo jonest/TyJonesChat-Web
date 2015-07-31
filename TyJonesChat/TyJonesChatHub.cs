@@ -14,5 +14,10 @@ namespace TyJonesChat
          } );
          Clients.All.broadcastMessage( chatJson );
       }
+
+      public void Connected( string name )
+      {
+         Clients.All.broadcastConnected( name );
+      }
    }
 }

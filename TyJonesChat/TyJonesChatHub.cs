@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json;
 
 namespace TyJonesChat
 {
@@ -6,7 +7,12 @@ namespace TyJonesChat
    {
       public void Send( string name, string message )
       {
-         Clients.All.broadcastMessage( name, message );
+         var chatJson = JsonConvert.SerializeObject( new ChatMessage
+         {
+            Name = name,
+            Message = message
+         } );
+         Clients.All.broadcastMessage( chatJson );
       }
    }
 }
